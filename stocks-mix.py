@@ -1,4 +1,5 @@
 import urllib
+import sys
 import coloredstatus as cs
 from bs4 import BeautifulSoup
 from googlefinance import getQuotes
@@ -30,7 +31,7 @@ while True:
             closetext = parsed.findAll('span', {'class': 'nwp'})[0].text.strip()
             if "Close" in closetext:
                 print cs.warning + "Market has closed."
-                exit(0)
+                sys.exit(0)
         except: pass
     closecount += 1
 
