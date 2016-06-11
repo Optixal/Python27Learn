@@ -1,12 +1,12 @@
 import socket, sys
-import statuscc
+import coloredstatus as cs
 
 RHOST = sys.argv[1]
 RPORT = int(sys.argv[2])
 s = socket.socket()
 s.settimeout(1)
 try:
-    print statuscc.NEUTRAL + "Attempting to connect to remote host"
+    print cs.status + "Attempting to connect to remote host"
     s.connect((RHOST, RPORT))
     while True:
         data = s.recv(1024)
@@ -15,4 +15,4 @@ try:
         s.send(input)
     s.close()
 except:
-    print statuscc.NEGATIVE + "Failed to connect to remote host"
+    print cs.error + "Failed to connect to remote host"
